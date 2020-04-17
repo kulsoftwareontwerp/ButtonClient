@@ -17,9 +17,7 @@ public class DomeinController {
 	
 	
 	public void executeAction(Action action) {
-		gameController.handle(action);
-		
-		
+		gameController.handleAction(action);
 	}
 	
 	public void paint(Graphics gameWorldGraphics) {
@@ -35,7 +33,7 @@ public class DomeinController {
 	}
 	
 	public void resetGame() {
-		gameController.resetGameWorld();
+		gameController.handleReset();
 	}
 	
 	public Set<Action> getSupportedActionsGameWorld() {

@@ -1,7 +1,5 @@
 package com.kuleuven.swop.group17.ButtonClient.Command;
 
-import java.util.Stack;
-
 import com.kuleuven.swop.group17.ButtonClient.applicationLayer.GameController;
 import com.kuleuven.swop.group17.ButtonClient.types.ExecutionSnapshot;
 
@@ -23,7 +21,6 @@ public class ResetCommand implements GameWorldCommand{
 
 	@Override
 	public void execute() {
-		
 		snapshot = gameController.resetGameWorld();
 	}
 

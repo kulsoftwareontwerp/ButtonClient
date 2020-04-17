@@ -24,10 +24,6 @@ public class GameController {
 		
 	}
 	
-	public void handleCommand(GameWorldCommand command) {
-		this.actionCommandHandler.handle(command);
-	}
-	
 	public ExecutionSnapshot performAction(Action action)
 	{	GameWorldSnapshot gameSnapshot = gameWorld.saveState();
 		ExecutionSnapshot snapshot = new ExecutionSnapshot(gameSnapshot);
@@ -63,7 +59,7 @@ public class GameController {
 		return gameWorld.getType().supportedActions();
 	}
 
-	public void handle(Action action) {
+	public void handleAction(Action action) {
 		ActionCommand command = new ActionCommand(this, action);
 		actionCommandHandler.handle(command);
 	}
@@ -76,5 +72,10 @@ public class GameController {
 	public void redo() {
 		actionCommandHandler.redo();
 		
+	}
+
+	public void handleReset() {
+		ResetCommand command = new ResetCommand(this);
+		actionCommandHandler.handle(command);
 	}
 }

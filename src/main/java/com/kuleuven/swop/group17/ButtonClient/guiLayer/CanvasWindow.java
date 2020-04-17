@@ -131,17 +131,16 @@ public class CanvasWindow extends CanvasResource implements Constants{
 				redo();
 			}
 		}
+		repaint();
 	}
 	
 	private void redo() {
 		domainController.redo();
-		repaint();
 		
 	}
 
 	private void undo() {
 		domainController.undo();
-		repaint();
 		
 	}
 

@@ -18,7 +18,6 @@ public class ActionCommand implements GameWorldCommand{
 		super();
 		this.gameController = gameController;
 		this.action=action;
-		//snapshot=null;
 		
 	}
 
