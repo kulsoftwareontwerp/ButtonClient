@@ -8,6 +8,7 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 
 import com.kuleuven.swop.group17.GameWorldApi.Action;
+import com.kuleuven.swop.group17.GameWorldApi.GameWorld;
 
 
 
@@ -28,30 +29,36 @@ public class ActionPanelArea implements Constants{
 		return actionFactory.createAction(action, x, y);
 	}
 
+	/**
+	 * Executes a Action that exists in the list of SupportedActions given by the Game we are playing.
+	 * The Action is determined by the coordinates where the player has clicked. 
+	 * Supposedly on a {@link ActionButton} object that has a Set of Coordinates.
+	 * @param x
+	 * @param y
+	 * @return Action given by a {@link ActionButton} selected by the coordinates if it exists.
+	 */
 	public static Action getActionFromCoordinate(int x, int y) {
 		try {
 			HashSet<ActionButton> actions  = getActionInActionPanel();
-			for(ActionButton a: actions){
-				HashSet<Pair<Integer, Integer>> coordinates = a.getCoordinatesAction();
-				for(Pair<Integer, Integer> coordinate : coordinates) {
-					if(coordinate.equals(new Pair<Integer, Integer>(x, y)))
-						return a.getAction();
-				}
-			}
-//			ActionButton a =  actions.stream()
-//					.filter(e -> e.getCoordinatesAction().contains(new Pair<Integer, Integer>(x, y))).findFirst().get();
-//			return a.getAction();
+			ActionButton a =  actions.stream()
+					.filter(e -> e.getCoordinatesAction().contains(new Pair<Integer, Integer>(x, y))).findFirst().get();
+			return a.getAction();
 		}catch (NoSuchElementException e) {
 			System.out.println("NULL");
 			return null;
 		}
-		return null;
 	}
 
 	private static HashSet<ActionButton> getActionInActionPanel() {
 		return actionsInPanel;
 	}
 
+	/**
+	 * Paints the {@link ActionPanelArea} given a {@link Graphics} object that determines the boundaries of the panel 
+	 * and the List of Supported Actions that need to be drawn in the {@link ActionPanelArea}
+	 * @param g Graphics object of the class {@link Graphics}.
+	 * @param actions {@link ArrayList} witch as object type class {@link Action}.
+	 */
 	public void paint(Graphics g, ArrayList<Action> actions) {
 		HashSet<ActionButton> set = new HashSet<ActionButton>();
 		int tempHeight = 30;

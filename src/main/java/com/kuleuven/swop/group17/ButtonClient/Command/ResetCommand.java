@@ -10,11 +10,15 @@ public class ResetCommand implements GameWorldCommand{
 
 
 	/**
+	 * A ResetCommand makes a command that holds a reset action of the gameWorld.
+	 * @throws NullPointerException when {@link GameController} object is null.
 	 * @param gameController
 	 * @param snapshot
 	 */
 	public ResetCommand(GameController gameController) {
 		super();
+		if(gameController == null)
+			throw new NullPointerException("GameController may not be null.");
 		this.gameController = gameController;
 		this.snapshot = null;
 	}
