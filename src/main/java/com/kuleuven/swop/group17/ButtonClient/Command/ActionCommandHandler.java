@@ -10,6 +10,12 @@ public class ActionCommandHandler {
 		executedGameWorldCommands=new Stack<Command>();
 		undoneGameWorldCommands=new Stack<Command>();
 	}
+	
+	@SuppressWarnings("unused")
+	private ActionCommandHandler(Stack<Command> executedGameWorldCommands, Stack<Command> undoneGameWorldCommands) {
+		this.executedGameWorldCommands = executedGameWorldCommands;
+		this.undoneGameWorldCommands = undoneGameWorldCommands;
+	}
 	/**
 	 * Handles a given command by executing its action and pushing it on the executed {@link GameWorldCommand} stack.
 	 * 

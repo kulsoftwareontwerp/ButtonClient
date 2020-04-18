@@ -1,38 +1,27 @@
 package com.kuleuven.swop.group17.ButtonClient.ApplicationLayer;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.*;
 
 import java.awt.Graphics;
-import java.io.IOException;
 import java.lang.reflect.Field;
-import java.rmi.UnexpectedException;
-import java.util.HashSet;
-import java.util.NoSuchElementException;
-import java.util.Set;
+
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
+
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.Spy;
-import org.mockito.invocation.InvocationOnMock;
+
 import org.mockito.junit.MockitoJUnitRunner;
-import org.mockito.stubbing.Answer;
 
 import com.kuleuven.swop.group17.ButtonClient.applicationLayer.DomainController;
 import com.kuleuven.swop.group17.ButtonClient.applicationLayer.GameController;

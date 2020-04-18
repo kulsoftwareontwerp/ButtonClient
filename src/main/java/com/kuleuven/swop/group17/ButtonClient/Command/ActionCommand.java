@@ -16,12 +16,12 @@ public class ActionCommand implements GameWorldCommand{
 	 * @throws NullPointerException | When {@link GameController} parameter is null.
 	 * 								| When {@link Action} parameter is null.
 	 */
-	public ActionCommand(GameController gameController,Action action) {
+	public ActionCommand(GameController gameController,Action action){
 		super();
 		if(gameController == null)
-			throw new NullPointerException("GameController may not be null");
+			throw new NullPointerException("GameController may not be null.");
 		if(action == null)
-			throw new NullPointerException("Action may not be null");
+			throw new NullPointerException("Action may not be null.");
 		this.gameController = gameController;
 		this.action=action;
 		
