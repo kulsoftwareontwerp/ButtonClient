@@ -11,20 +11,30 @@ import com.kuleuven.swop.group17.GameWorldApi.GameWorld;
  * @author Quentin Tilman
  *
  */
-public class DomeinController {
+public class DomainController {
 	
 	private GameController gameController;
-	
 	
 	/**
 	 * Creates DomainControllet object.
 	 * @throws NullPointerException when gameWorld is null.
 	 * @param gameWorld Object of class {@link GameController} .
 	 */
-	public DomeinController(GameWorld gameWorld) {
+	public DomainController(GameWorld gameWorld) {
 		if(gameWorld == null)
 			throw new NullPointerException("gameWorld may not be null.");
-		gameController = new GameController(gameWorld);
+		setGameController(new GameController(gameWorld));
+	}
+	
+	public DomainController(GameWorld gameWorld,GameController gameController) {
+		super();
+		this.gameController = gameController;
+	}
+	
+	public void setGameController(GameController controller) {
+		if(controller == null)
+			throw new NullPointerException("GameController may not be null.");
+		gameController = controller ;
 	}
 	
 	/**

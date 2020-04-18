@@ -19,7 +19,7 @@ import java.util.Stack;
 import java.util.Timer;
 import java.util.stream.Collectors;
 
-import com.kuleuven.swop.group17.ButtonClient.applicationLayer.DomeinController;
+import com.kuleuven.swop.group17.ButtonClient.applicationLayer.DomainController;
 import com.kuleuven.swop.group17.GameWorldApi.Action;
 import com.kuleuven.swop.group17.ButtonClient.types.*;
 
@@ -32,7 +32,7 @@ public class CanvasWindow extends CanvasResource implements Constants{
 
 	private ActionPanelArea actionPanelArea;
 	
-	private DomeinController domainController;
+	private DomainController domainController;
 	private ActionFactory actionFactory;
 
 	private int x_offsetCurrentAction = 0;
@@ -47,7 +47,7 @@ public class CanvasWindow extends CanvasResource implements Constants{
 
 	// methods of CanvasResource that need to be overridden:
 
-	public CanvasWindow(String title, DomeinController dc) {
+	public CanvasWindow(String title, DomainController dc) {
 		super(title);
 		this.domainController = dc;
 

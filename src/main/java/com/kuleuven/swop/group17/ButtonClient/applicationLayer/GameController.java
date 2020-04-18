@@ -29,10 +29,11 @@ public class GameController {
 	public GameController(GameWorld gameWorld) {
 		if(gameWorld == null)
 			throw new NullPointerException("GameWorld may not be null.");
-		
-		this.gameWorld = gameWorld;
-		initialGameWorldSnapshot = gameWorld.saveState();
-		actionCommandHandler = new ActionCommandHandler();
+		initiateGameController(gameWorld,gameWorld.saveState(), new ActionCommandHandler());
+	}
+	
+	public GameController(GameWorld gameWorld,GameWorldSnapshot gameWorldSnapshot,ActionCommandHandler actionCommandHandler ) {
+		initiateGameController(gameWorld, gameWorldSnapshot, actionCommandHandler);
 	}
 	
 	/**
@@ -45,6 +46,20 @@ public class GameController {
 	 * 			| If GameWolrd is null.
 	 * @return	ExecutionSnapshot , a snapshot of the game afterwards the action has been executed.
 	 */
+	
+	public void initiateGameController(GameWorld gameWorld , GameWorldSnapshot gameWorldSnapshot ,ActionCommandHandler actionCommandHandler) {
+		if(gameWorld == null)
+			throw new NullPointerException("GameWorld may not be null.");
+		if(gameWorldSnapshot == null)
+			throw new NullPointerException("gameWorldSnapshot may not be null.");
+		if(actionCommandHandler == null)
+			throw new NullPointerException("actionCommandHandler may not be null.");
+		
+		this.gameWorld = gameWorld;
+		this.actionCommandHandler = actionCommandHandler;
+		setGameWorldSnapShot(gameWorldSnapshot);
+	}
+	
 	public ExecutionSnapshot performAction(Action action)
 	{	
 		if(action == null)

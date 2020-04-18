@@ -3,7 +3,7 @@ package com.kuleuven.swop.group17.ButtonClient;
 
 import java.security.DomainCombiner;
 
-import com.kuleuven.swop.group17.ButtonClient.applicationLayer.DomeinController;
+import com.kuleuven.swop.group17.ButtonClient.applicationLayer.DomainController;
 import com.kuleuven.swop.group17.ButtonClient.guiLayer.CanvasWindow;
 import com.kuleuven.swop.group17.GameWorldApi.GameWorld;
 import com.kuleuven.swop.group17.GameWorldApi.GameWorldType;
@@ -21,7 +21,7 @@ public class App
 		GameWorld gameWorld = GameWorldType.createInstance("com.kuleuven.swop.group17.CoolGameWorld.applicationLayer.CoolGameWorld");
 		
 		
-		DomeinController dc = new DomeinController(gameWorld);		
+		DomainController dc = new DomainController(gameWorld);		
 
 		//Test push voor de UI-branch
 		java.awt.EventQueue.invokeLater(() -> {
