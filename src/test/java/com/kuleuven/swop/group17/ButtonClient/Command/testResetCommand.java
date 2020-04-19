@@ -2,12 +2,10 @@ package com.kuleuven.swop.group17.ButtonClient.Command;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.*;
 
-import java.awt.Graphics;
 import java.lang.reflect.Field;
 
 import org.junit.After;
@@ -22,10 +20,8 @@ import org.mockito.Mock;
 
 import org.mockito.junit.MockitoJUnitRunner;
 
-import com.kuleuven.swop.group17.ButtonClient.applicationLayer.DomainController;
 import com.kuleuven.swop.group17.ButtonClient.applicationLayer.GameController;
 import com.kuleuven.swop.group17.ButtonClient.types.ExecutionSnapshot;
-import com.kuleuven.swop.group17.GameWorldApi.Action;
 
 @RunWith(MockitoJUnitRunner.class)
 public class testResetCommand {

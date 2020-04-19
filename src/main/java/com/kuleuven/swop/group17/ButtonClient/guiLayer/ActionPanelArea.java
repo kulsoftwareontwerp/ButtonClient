@@ -21,12 +21,18 @@ public class ActionPanelArea implements Constants{
 		setactionFactory(actionFactory);
 	}
 	
+	@SuppressWarnings({ "unused", "static-access" })
+	private ActionPanelArea(ActionFactory actionFactory, HashSet<ActionButton> actionsInPanel) {
+		super();
+		this.actionFactory = actionFactory;
+	}
+	
 	private void setactionFactory(ActionFactory actionFactory) {
 		this.actionFactory = actionFactory;
 	}
 	
-	public ActionButton createAction(Action action, int x , int y) {
-		return actionFactory.createAction(action, x, y);
+	public ActionButton createActionButton(Action action, int x , int y) {
+		return actionFactory.createActionButton(action, x, y);
 	}
 
 	/**
@@ -49,7 +55,7 @@ public class ActionPanelArea implements Constants{
 		}
 	}
 
-	private static HashSet<ActionButton> getActionInActionPanel() {
+	public static HashSet<ActionButton> getActionInActionPanel() {
 		return actionsInPanel;
 	}
 
@@ -66,7 +72,7 @@ public class ActionPanelArea implements Constants{
 		if(true) {
 			
 			for (var type : actions) {
-					set.add(actionFactory.createAction(type ,0, tempHeight));
+					set.add(actionFactory.createActionButton(type ,0, tempHeight));
 					tempHeight += 60;
 				}
 			set.forEach(e-> e.draw(g));

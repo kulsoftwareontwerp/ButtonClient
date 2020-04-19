@@ -1,24 +1,15 @@
 package com.kuleuven.swop.group17.ButtonClient.guiLayer;
 
 
-import java.awt.AWTException;
+
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Robot;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-import java.util.Stack;
-import java.util.Timer;
-import java.util.stream.Collectors;
 
+import java.util.Timer;
 import com.kuleuven.swop.group17.ButtonClient.applicationLayer.DomainController;
 import com.kuleuven.swop.group17.GameWorldApi.Action;
 import com.kuleuven.swop.group17.ButtonClient.types.*;
@@ -28,19 +19,13 @@ import com.kuleuven.swop.group17.ButtonClient.types.*;
 public class CanvasWindow extends CanvasResource implements Constants{
 	private static final int MASKEDKEY_DURATION = 500;
 
-	private Boolean redo = false;
 
 	private ActionPanelArea actionPanelArea;
 	
 	private DomainController domainController;
 	private ActionFactory actionFactory;
-
-	private int x_offsetCurrentAction = 0;
-	private int y_offsetCurrentAction = 0;
-
-	private Object buttonGraphics;
-
 	private MaskedKeyBag maskedKeyBag;
+	private Timer maskedKeyTimer = null;
 	
 	private ArrayList<Action> supportedActions;
 
@@ -60,6 +45,14 @@ public class CanvasWindow extends CanvasResource implements Constants{
 		supportedActions = new ArrayList<Action>(domainController.getSupportedActionsGameWorld());
 		maskedKeyBag = new MaskedKeyBag(false, false);
 
+	}
+	
+	private CanvasWindow(String title,DomainController domainController, ActionFactory actionFactory, MaskedKeyBag bag,ArrayList<Action> suppoprtedActions,ActionPanelArea actionPanelArea) {
+		super(title);
+		this.actionPanelArea = actionPanelArea;
+		this.domainController = domainController;
+		this.supportedActions = suppoprtedActions;
+		this.maskedKeyBag = bag;
 	}
 
 	@Override
@@ -149,7 +142,7 @@ public class CanvasWindow extends CanvasResource implements Constants{
 		repaint();
 	}
 
-	private Timer maskedKeyTimer = null;
+	
 
 
 	public ActionFactory getActionFactory() {

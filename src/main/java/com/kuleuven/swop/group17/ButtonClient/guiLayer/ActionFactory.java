@@ -8,7 +8,7 @@ public class ActionFactory {
 		
 	}
 	
-	public ActionButton createAction(Action action, int x , int y) {
+	public ActionButton createActionButton(Action action, int x , int y) {
 		return new ActionButton(action, x, y);
 	}
 

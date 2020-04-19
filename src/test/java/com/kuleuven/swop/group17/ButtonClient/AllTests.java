@@ -12,7 +12,7 @@ import com.kuleuven.swop.group17.ButtonClient.guiLayer.guiLayer;
 import com.kuleuven.swop.group17.ButtonClient.types.types;
 
 @RunWith(Suite.class)
-@SuiteClasses({ApplicationLayer.class,CommandLayer.class,guiLayer.class,types.class})
+@SuiteClasses({ApplicationLayer.class,CommandLayer.class,guiLayer.class})//,types.class
 public class AllTests {
 
 }

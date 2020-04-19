@@ -18,7 +18,6 @@ public class ActionButton  implements Constants {
 		private int width;
 
 		public ActionButton(Action action, int x, int y) {
-			//hasToBeRemovedOnUndo = false; TODO
 			setId(action.toString());
 			setAction(action);
 			setX_coord(x);
@@ -26,6 +25,12 @@ public class ActionButton  implements Constants {
 			initDimensions();
 			coordinatesAction = createCoordinatePairs(getX_coord(), getY_coord());
 			
+		}
+		
+		@SuppressWarnings("unused")
+		private ActionButton(Action action, Integer x, Integer y,HashSet<Pair<Integer, Integer>> coordinatesAction) {
+			super();	
+			initDimensions();
 		}
 
 
@@ -135,16 +140,16 @@ public class ActionButton  implements Constants {
 
 		@Override
 		public boolean equals(Object o) {
-			if (!(o instanceof Action))
+			if (!(o instanceof ActionButton))
 				return false;
-			Action action = (Action) o;
-			return this.getId().equals(action.toString()) && getAction().equals(action);
+			ActionButton actionButton = (ActionButton) o;
+			return this.getId().equals(actionButton.getId()) && getAction().equals(actionButton.getAction());
 		}
 
 		@Override
 		public String toString() {
 			StringBuilder builder = new StringBuilder();
-			builder.append("Action [id=");
+			builder.append("ActionButton [id=");
 			builder.append(id);
 			builder.append(", x_coord=");
 			builder.append(x_coord);

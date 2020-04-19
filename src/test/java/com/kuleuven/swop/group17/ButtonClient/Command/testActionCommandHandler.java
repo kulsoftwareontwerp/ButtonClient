@@ -94,7 +94,7 @@ public class testActionCommandHandler {
 		}
 		
 		@Test
-		public void testUndo() {
+		public void testUndo() {//TODO
 			when(executedGameWorldCommands.size()).thenReturn(1);
 			commandHandler.undo();
 //			verify(command).undo();
@@ -103,14 +103,13 @@ public class testActionCommandHandler {
 		
 		@Test
 		public void testRedoSizeZero() {
-			when(executedGameWorldCommands.size()).thenReturn(0);
 			verifyNoInteractions(undoneGameWorldCommands.pop());
 			verifyNoInteractions(executedGameWorldCommands);
 
 		}
 		
 		@Test
-		public void testRedo() {
+		public void testRedo() {//TODO
 			when(undoneGameWorldCommands.size()).thenReturn(1);
 			commandHandler.redo();
 //			verify(command).execute();
