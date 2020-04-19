@@ -1,6 +1,7 @@
 package com.kuleuven.swop.group17.ButtonClient;
 
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -12,7 +13,7 @@ import com.kuleuven.swop.group17.ButtonClient.guiLayer.guiLayer;
 import com.kuleuven.swop.group17.ButtonClient.types.types;
 
 @RunWith(Suite.class)
-@SuiteClasses({ApplicationLayer.class,CommandLayer.class,guiLayer.class})//,types.class
+@SuiteClasses({ApplicationLayer.class,CommandLayer.class,guiLayer.class,types.class,testMain.class})//
 public class AllTests {
-
+	
 }
