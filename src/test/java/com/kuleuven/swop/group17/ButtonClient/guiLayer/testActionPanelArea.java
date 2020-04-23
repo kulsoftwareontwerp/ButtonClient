@@ -31,7 +31,7 @@ public class testActionPanelArea {
 	private Graphics graphic;
 	@Mock
 	private Pair<Integer,Integer> coordinate;
-	@Mock
+	@Spy
 	private HashSet<Pair<Integer,Integer>> coordinates;
 	@Mock
 	private ActionButton actionButton;
@@ -39,7 +39,7 @@ public class testActionPanelArea {
 	private Action action;
 	@Mock(name="actionFactory")
 	private ActionFactory actionFactory;
-	@Mock(name="actionsInPanel")
+	@Spy
 	private HashSet<ActionButton> actionsInPanel;
 	@Spy
 	@InjectMocks
@@ -49,15 +49,10 @@ public class testActionPanelArea {
 	public void setup() {
 		when(actionFactory.createActionButton(action, 0, 30)).thenReturn(actionButton);
 		
-		when(actionButton.getAction()).thenReturn(action);
 		when(actionButton.getCoordinatesAction()).thenReturn(coordinates);
 		
-		actionsInPanel.add(actionButton);
-		
+		actionsInPanel.add(actionButton);		
 		coordinates.add(coordinate);
-		
-		when(coordinate.getLeft()).thenReturn(0);
-		when(coordinate.getRight()).thenReturn(0);
 	}
 	@Test
 	public void testActionPanelAreaConstructor() {
@@ -95,4 +90,25 @@ public class testActionPanelArea {
 		
 	}
 	//TODO getActionsFromCoortinates
+	@SuppressWarnings("static-access")
+	@Test
+	public void testGetActionFromCoordinateNull() {
+		Action action = mock(Action.class);
+		ActionButton ab = mock(ActionButton.class);
+		ab.createCoordinatePairs(0, 0);
+		ab.setAction(action);
+		actionsInPanel.add(ab);
+		
+		actionPanelArea.getActionFromCoordinate(0, 0);
+	}
+	
+	@SuppressWarnings("static-access")
+	@Test
+	public void testGetActionFromCoordinate() {
+		ActionButton ab = new ActionButton(action, 0, 0);
+		ab.setCoordinatesAction(coordinates);
+		actionsInPanel.add(ab);
+		
+		actionPanelArea.getActionFromCoordinate(0, 0);
+	}
 }

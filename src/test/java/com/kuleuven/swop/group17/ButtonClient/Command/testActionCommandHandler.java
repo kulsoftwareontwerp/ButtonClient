@@ -19,7 +19,7 @@ import org.junit.runner.RunWith;
 
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-
+import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -28,9 +28,9 @@ public class testActionCommandHandler {
 
 		@Mock
 		private GameWorldCommand command;
-		@Mock(name = "executedGameWorldCommands")
+		@Spy
 		private Stack<Command> executedGameWorldCommands;
-		@Mock(name = "undoneGameWorldCommands")
+		@Spy
 		private Stack<Command> undoneGameWorldCommands;
 		@InjectMocks
 		private ActionCommandHandler commandHandler;
@@ -41,8 +41,7 @@ public class testActionCommandHandler {
 
 		@Before
 		public void setUp() throws Exception {
-			when(executedGameWorldCommands.pop()).thenReturn(command);
-			when(undoneGameWorldCommands.pop()).thenReturn(command);
+
 		}
 
 		/**
@@ -88,33 +87,26 @@ public class testActionCommandHandler {
 
 		@Test
 		public void testUndoSizeZero() {
+			commandHandler.undo();
 			verify(executedGameWorldCommands,times(0)).pop();
-			verifyNoInteractions(executedGameWorldCommands.pop());
-			verifyNoInteractions(undoneGameWorldCommands);
+			verify(undoneGameWorldCommands,times(0)).push(any());
 		}
 		
-		@Test
-		public void testUndo() {//TODO
-			when(executedGameWorldCommands.size()).thenReturn(1);
-			commandHandler.undo();
+//		@Test
+//		public void testUndoRedo() {//TODO
+//			commandHandler.handle(command);
+//			commandHandler.undo();
 //			verify(command).undo();
-//			verify(undoneGameWorldCommands).push(command);
-		}
+//			commandHandler.redo();
+//			verify(command,times(2)).execute();
+//		}
 		
 		@Test
 		public void testRedoSizeZero() {
-			verifyNoInteractions(undoneGameWorldCommands.pop());
-			verifyNoInteractions(executedGameWorldCommands);
+			commandHandler.redo();
+			verify(executedGameWorldCommands,times(0)).push(any());
 
 		}
 		
-		@Test
-		public void testRedo() {//TODO
-			when(undoneGameWorldCommands.size()).thenReturn(1);
-			commandHandler.redo();
-//			verify(command).execute();
-//			verify(executedGameWorldCommands).push(command);
-
-		}
 
 }

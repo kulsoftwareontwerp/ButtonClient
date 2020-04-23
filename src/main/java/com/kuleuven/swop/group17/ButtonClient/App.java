@@ -11,10 +11,9 @@ import com.kuleuven.swop.group17.GameWorldApi.GameWorldType;
  */
 public class App {
 	public static void main(String[] args) {
-//		GameWorld gameWorld = GameWorldType.createInstance("com.kuleuven.swop.group17.RobotGameWorld.applicationLayer.RobotGameWorld");
-		GameWorld gameWorld = GameWorldType
-				.createInstance("com.kuleuven.swop.group17.CoolGameWorld.applicationLayer.CoolGameWorld");
-
+		System.out.println(args[0]);
+		GameWorld gameWorld = GameWorldType.createInstance(args[0]);
+		
 		DomainController dc = new DomainController(gameWorld);
 
 		// Test push voor de UI-branch
