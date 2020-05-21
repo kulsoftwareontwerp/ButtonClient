@@ -4,15 +4,15 @@ package com.kuleuven.swop.group17.ButtonClient.guiLayer;
 
 import java.awt.Color;
 import java.awt.Graphics;
-
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-
 import java.util.Timer;
+
 import com.kuleuven.swop.group17.ButtonClient.applicationLayer.DomainController;
+import com.kuleuven.swop.group17.ButtonClient.types.MaskedKeyPressed;
 import com.kuleuven.swop.group17.GameWorldApi.Action;
-import com.kuleuven.swop.group17.ButtonClient.types.*;
+import com.kuleuven.swop.group17.Graphics.CanvasResource;
 
 
 
