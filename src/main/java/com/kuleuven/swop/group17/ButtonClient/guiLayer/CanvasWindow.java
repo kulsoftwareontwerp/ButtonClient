@@ -4,15 +4,15 @@ package com.kuleuven.swop.group17.ButtonClient.guiLayer;
 
 import java.awt.Color;
 import java.awt.Graphics;
-
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-
 import java.util.Timer;
+
 import com.kuleuven.swop.group17.ButtonClient.applicationLayer.DomainController;
+import com.kuleuven.swop.group17.ButtonClient.types.MaskedKeyPressed;
 import com.kuleuven.swop.group17.GameWorldApi.Action;
-import com.kuleuven.swop.group17.ButtonClient.types.*;
+import com.kuleuven.swop.group17.Graphics.CanvasResource;
 
 
 
@@ -108,9 +108,19 @@ public class CanvasWindow extends CanvasResource implements Constants{
 			if (keyCode == KeyEvent.VK_Z) {
 					if (maskedKeyBag.getCtrl() && !maskedKeyBag.getShift()) {
 						undo();
+						if (maskedKeyTimer != null) {
+							maskedKeyTimer.cancel();
+							maskedKeyBag.setShift(false);
+						}
 					}
 					if (maskedKeyBag.getCtrl() && maskedKeyBag.getShift()) {
 						redo();
+						if (maskedKeyTimer != null) {
+							maskedKeyTimer.cancel();
+						}
+						maskedKeyTimer = new Timer();
+						maskedKeyTimer.schedule(new MaskedKeyPressed(maskedKeyBag, true), MASKEDKEY_DURATION);
+						maskedKeyBag.setShift(true);
 					}
 
 			}
