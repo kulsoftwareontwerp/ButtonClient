@@ -108,9 +108,19 @@ public class CanvasWindow extends CanvasResource implements Constants{
 			if (keyCode == KeyEvent.VK_Z) {
 					if (maskedKeyBag.getCtrl() && !maskedKeyBag.getShift()) {
 						undo();
+						if (maskedKeyTimer != null) {
+							maskedKeyTimer.cancel();
+							maskedKeyBag.setShift(false);
+						}
 					}
 					if (maskedKeyBag.getCtrl() && maskedKeyBag.getShift()) {
 						redo();
+						if (maskedKeyTimer != null) {
+							maskedKeyTimer.cancel();
+						}
+						maskedKeyTimer = new Timer();
+						maskedKeyTimer.schedule(new MaskedKeyPressed(maskedKeyBag, true), MASKEDKEY_DURATION);
+						maskedKeyBag.setShift(true);
 					}
 
 			}
