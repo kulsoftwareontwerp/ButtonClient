@@ -92,14 +92,14 @@ public class testActionCommandHandler {
 			verify(undoneGameWorldCommands,times(0)).push(any());
 		}
 		
-//		@Test
-//		public void testUndoRedo() {//TODO
-//			commandHandler.handle(command);
-//			commandHandler.undo();
-//			verify(command).undo();
-//			commandHandler.redo();
-//			verify(command,times(2)).execute();
-//		}
+		@Test
+		public void testUndoRedo() {//TODO
+			commandHandler.handle(command);
+			commandHandler.undo();
+			verify(command).undo();
+			commandHandler.redo();
+			verify(command,times(2)).execute();
+		}
 		
 		@Test
 		public void testRedoSizeZero() {

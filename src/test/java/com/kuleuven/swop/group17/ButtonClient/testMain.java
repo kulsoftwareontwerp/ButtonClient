@@ -7,6 +7,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 public class testMain {
 	@Test
 	public void testMain() {
-		App.main(null);
+		String[] args = new String[2];
+		args[0] = "com.kuleuven.swop.group17.CoolGameWorld.applicationLayer.CoolGameWorld";
+		App.main(args);
 	}
 }

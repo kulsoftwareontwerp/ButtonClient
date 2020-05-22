@@ -47,6 +47,37 @@ public class testActionButton {
 	}
 	
 	@Test
+	public void testStandardHeigh() {
+		assertTrue(actionButton.getStandardHeight() == 30);
+	}
+	
+	@Test
+	public void testGetCoordinateAction() {
+		ActionButton ab = new ActionButton(mock(Action.class), 10, 10);
+		HashSet<Pair<Integer,Integer>> coordinates = actionButton.createCoordinatePairs(10, 10);
+		assertTrue(ab.getCoordinatesAction().equals(coordinates));
+	}
+	
+	@Test
+	public void testHashCode() {
+		Integer hashCode = actionButton.hashCode();
+		assertTrue(hashCode != null);
+	}
+	
+	@Test
+	public void testSetCoordinateAction() {
+		actionButton.setCoordinatesAction(actionButton.createCoordinatePairs(10, 10));
+		try {
+			Field coordinatesAction = ActionButton.class.getDeclaredField("coordinatesAction");
+			coordinatesAction.setAccessible(true);
+			assertTrue("snapshot was not resetted", coordinatesAction.get(actionButton) != null);
+			
+		} catch (NoSuchFieldException | IllegalArgumentException | IllegalAccessException e) {
+			fail("One or more of the required fields were not declared.");
+		}
+	}
+	
+	@Test
 	public void testActionButtonConstructor() {
 		ActionButton ab = new ActionButton(action , 0 , 0);
 		try {
@@ -124,6 +155,8 @@ public class testActionButton {
 		ActionButton a = new ActionButton(action,0,0);
 		assertEquals("ActionButton [id="+a.getId()+", x_coord="+a.getX_coord()+", y_coord="+a.getY_coord() +"]",a.toString() );
 	}
+	
+
 	
 	
 	

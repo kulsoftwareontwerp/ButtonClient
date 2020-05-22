@@ -39,6 +39,8 @@ import com.kuleuven.swop.group17.ButtonClient.Command.ResetCommand;
 import com.kuleuven.swop.group17.ButtonClient.applicationLayer.DomainController;
 import com.kuleuven.swop.group17.ButtonClient.applicationLayer.GameController;
 import com.kuleuven.swop.group17.ButtonClient.types.ExecutionSnapshot;
+import com.kuleuven.swop.group17.CoolGameWorld.applicationLayer.CoolGameWorld;
+import com.kuleuven.swop.group17.CoolGameWorld.types.CoolGameWorldType;
 import com.kuleuven.swop.group17.GameWorldApi.Action;
 import com.kuleuven.swop.group17.GameWorldApi.GameWorld;
 import com.kuleuven.swop.group17.GameWorldApi.GameWorldSnapshot;
@@ -176,6 +178,30 @@ public class testGameController {
 	}
 	
 	@Test
+	public void testPerformActionNegative() {
+		String excMessage = "gameWorld cannot be null.";
+		exceptionRule.expect(NullPointerException.class);
+		exceptionRule.expectMessage(excMessage);
+		
+		try {
+			Field f = GameController.class.getDeclaredField("gameWorld");
+			f.setAccessible(true);
+			f.set(gameController, null);
+		} catch (NoSuchFieldException | IllegalArgumentException | IllegalAccessException e) {
+			fail("One or more of the required fields were not declared.");
+		}
+		
+		ExecutionSnapshot esh= gameController.performAction(action);
+	}
+	
+	@Test
+	public void testInitialGameWorldSnapshot() {
+		GameWorldSnapshot gsp = gameController.getInitialGameWorldSnapshot();
+		assertTrue(gsp != null);
+	}
+
+	
+	@Test
 	public void testPaintNull() {
 		String excMessage = "graphics may not be null.";
 		exceptionRule.expect(NullPointerException.class);
@@ -214,15 +240,12 @@ public class testGameController {
 	}
 	
 	
-	@Ignore
+	@Test
 	public void testSupportedActions() {
 		Set<Action> supportedActions = new HashSet<Action>();
-		supportedActions.add(action);
+		when(gameWorld.getType()).thenReturn(mock(CoolGameWorldType.class));
 		when(gameWorld.getType().supportedActions()).thenReturn(supportedActions);
-		
-		
-		gameController.getSupportedActionsGameWorld();
-		verify(gameWorld).getType().supportedActions();
+		supportedActions = gameController.getSupportedActionsGameWorld();
 	}
 	
 	@Test
